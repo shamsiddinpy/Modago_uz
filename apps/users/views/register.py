@@ -14,7 +14,7 @@ from users.models import User
 class RegisterView(CreateView):
     template_name = 'apps/auth/register.html'
     form_class = RegistrationUserCreationForm
-    success_url = reverse_lazy('conform-message')
+    success_url = reverse_lazy('register-message')
 
     def form_valid(self, form):
         user = form.save(commit=False)

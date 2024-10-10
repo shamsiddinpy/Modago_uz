@@ -4,8 +4,8 @@ from users.views.register import RegisterView, LoginView, LagoutFormView, confir
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
-    path('email-confirmation-message/<str:confirmation_code>/', confirm_register, name='confirm-register'),
+    path('email-confirmation-message/<str:confirmation_code>/', confirm_register, name='confirm-message'),
     path('login/', LoginView.as_view(), name='login'),
-    path('conform-message', ConformTemplateView.as_view(), name='conform-message'),
+    path('register-message', ConformTemplateView.as_view(), name='register-message'),
     path('logout/', LagoutFormView.as_view(), name='logout'),
 ]
