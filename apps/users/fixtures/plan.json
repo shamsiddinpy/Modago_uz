@@ -1,0 +1,38 @@
+[
+  {
+    "model": "users.Plan",
+    "pk": 1,
+    "fields": {
+      "name": "Free Plan",
+      "description": "Free",
+      "code": "Free"
+    }
+  },
+  {
+    "model": "users.Plan",
+    "pk": 2,
+    "fields": {
+      "name": "Basic Plan",
+      "description": "Basic",
+      "code": "Basic"
+    }
+  },
+  {
+    "model": "users.Plan",
+    "pk": 3,
+    "fields": {
+      "name": "Advanced Plan",
+      "description": "Advanced ",
+      "code": "Advanced"
+    }
+  },
+  {
+    "model": "users.Plan",
+    "pk": 4,
+    "fields": {
+      "name": "Premium Plan",
+      "description": "Premium.",
+      "code": "Premium"
+    }
+  }
+]
