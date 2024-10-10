@@ -1,8 +1,11 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.core.cache import cache
 from django.core.exceptions import ValidationError
 from django.forms import EmailField, Form, CharField, PasswordInput
+from django.utils.crypto import get_random_string
 
+from shared.utls.email_message import send_email
 from users.models import User
 
 
@@ -10,6 +13,12 @@ class RegistrationUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'password1', 'password2']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("Bu email allaqachon ro'yxatdan o'tgan")
+        return email
 
 
 class LoginUserAuthenticationForm(Form):
@@ -22,9 +31,9 @@ class LoginUserAuthenticationForm(Form):
 
     def clean(self):
         email = self.cleaned_data.get('email')
-        password1 = self.cleaned_data.get('password1')
-        if email and password1:
-            self.user_cache = authenticate(self.request, email=email, password1=password1)
+        password = self.cleaned_data.get('password1')
+        if email and password:
+            self.user_cache = authenticate(self.request, email=email, password=password)
             if self.user_cache is None:
                 raise ValidationError("Elektron pochta yoki parol noto'g'ri")
             else:

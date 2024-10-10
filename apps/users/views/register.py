@@ -31,13 +31,10 @@ class RegisterView(CreateView):
         return super().form_invalid(form)
 
 
-def confirm_register(request, confirmation_code):
+def conform_message(request, confirmation_code):
     email = cache.get(confirmation_code)
 
     user = get_object_or_404(User, email=email)
-    if user.is_active:
-        return HttpResponse('Email allaqachon tasdiqlangan.')
-
     user.is_active = True
     user.public_offer = True
     user.confirmation_code = ''
