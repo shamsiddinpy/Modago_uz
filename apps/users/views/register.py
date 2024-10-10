@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
@@ -13,13 +14,14 @@ from users.models import User
 class RegisterView(CreateView):
     template_name = 'apps/auth/register.html'
     form_class = RegistrationUserCreationForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('conform-message')
 
     def form_valid(self, form):
         user = form.save(commit=False)
         user.type = User.Type.EMAIL
         user.save()
         confirmation_code = get_random_string(32)
+        cache.set(confirmation_code, user.email, 3600)
         user.confirmation_code = confirmation_code
         user.save()
         send_email(self.request, user.email, confirmation_code)
@@ -30,7 +32,9 @@ class RegisterView(CreateView):
 
 
 def confirm_register(request, confirmation_code):
-    user = get_object_or_404(User, confirmation_code=confirmation_code)
+    email = cache.get(confirmation_code)
+
+    user = get_object_or_404(User, email=email)
     if user.is_active:
         return HttpResponse('Email allaqachon tasdiqlangan.')
 
@@ -54,3 +58,7 @@ class LoginView(FormView):
 class LagoutFormView(TemplateView):
     template_name = 'apps/auth/test.html'
     # form_class = LoginUserAuthenticationForm
+
+
+class ConformTemplateView(TemplateView):
+    template_name = 'apps/auth/register-message.html'
