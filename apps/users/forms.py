@@ -43,3 +43,11 @@ class LoginUserAuthenticationForm(Form):
 
     def get_user(self):
         return self.user_cache
+
+
+class ForgotPasswordForm(Form):
+    email = EmailField(max_length=254)
+
+    def validate(self, value):
+        if not value:
+            raise ValidationError({"message": "Enter emaq"})

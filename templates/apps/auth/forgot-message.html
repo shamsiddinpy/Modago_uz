@@ -1,4 +1,4 @@
-{% load  static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 
@@ -16,11 +16,6 @@
     <meta name="theme-color" content="#ffffff">
     <script src="{% static 'apps/assets/js/config.js' %}"></script>
     <script src="{% static 'apps/vendors/overlayscrollbars/OverlayScrollbars.min.js' %}"></script>
-
-
-    <!-- ===============================================-->
-    <!--    Stylesheets-->
-    <!-- ===============================================-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap"
           rel="stylesheet">
@@ -34,20 +29,6 @@
             background: linear-gradient(135deg, #87CEEB, #9370DB);
 
         }
-
-        .card-body {
-            height: 600px;
-            overflow-y: auto;
-
-        }
-
-        .form-control {
-            width: 400px !important;
-            height: 46px !important;
-            margin: 0 auto;
-        }
-
-
     </style>
     <script>
         var isRTL = JSON.parse(localStorage.getItem('isRTL'));
@@ -82,51 +63,16 @@
             <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
                 <div class="card">
                     <div class="card-body p-4 p-sm-5">
-                        <div class="row flex-between-center mb-2">
-                            <div class="col-auto">
-                                <h5>Tizimga kirish</h5>
-                            </div>
-                            <div class=" fs--1 text-600"><span class="mb-0 undefined">or</span> <span><a
-                                    href="{% url 'register' %}">Ro'yxatdan o'tish</a></span></div>
-                        </div>
-                        <form method="post" , action="{% url 'login' %}">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label for="email">Elektron pochta<span class="text-red"></span></label>
-                                <input class="form-control" name="email" type="email" placeholder="Email address"/>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password1">Parol<span class="text-red"></span></label>
-
-                                <input class="form-control" name="password1" type="password" placeholder="Password"/>
-                            </div>
-                            <div class="row flex-between-center">
-                                <div class="col-auto">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" id="basic-checkbox"
-                                               checked="checked"/>
-                                        <label class="form-check-label mb-0" for="basic-checkbox">Remember me</label>
-                                    </div>
-                                </div>
-                                <div class="col-auto"><a class="fs--1"
-                                                         href="{% url 'forgot-password' %}">Parolni
-                                    unutdingizmi?</a></div>
-                            </div>
-                            <div class="mb-3">
-                                <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">Log in
-                                </button>
-                            </div>
-                        </form>
-                        <div class="position-relative mt-4">
-                            <hr class="bg-300"/>
-                            <div class="divider-content-center">Yoki davom eting</div>
-                        </div>
-                        <div class="row g-2 mt-2">
-                            <div class="col-sm-4">
-                                <a class="btn btn-outline-telegram btn-sm d-block w-100" href="#">
-                                    <span class="fab fa-telegram me-2" data-fa-transform="grow-8"></span> Telegram
-                                </a>
-                            </div>
+                        <div class="text-center"><img class="d-block mx-auto mb-4"
+                                                      src="{% static 'apps/assets/img/icons/spot-illustrations/16.png' %}"
+                                                      alt="Email"
+                                                      width="100"/>
+                            <h4 class="mb-2">Iltimos, elektron pochtangizni tekshiring!</h4>
+                            <p>Elektron pochta manziliga xat yuborildi Iltimos, biriktirilgan havolani bosing va elektron pochtangizni tasdiqlang
+                                <strong>{{ user.email }}</strong>
+                            </p><a class="btn btn-primary btn-sm mt-3"
+                                   href="{% url 'register' %}"><span class="fas fa-chevron-left me-1"
+                                                                     data-fa-transform="shrink-4 down-1"></span>Orqaga qaytish</a>
                         </div>
                     </div>
                 </div>

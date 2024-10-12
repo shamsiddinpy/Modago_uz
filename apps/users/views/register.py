@@ -1,13 +1,12 @@
 from django.contrib.auth import login
 from django.core.cache import cache
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.crypto import get_random_string
 from django.views.generic import TemplateView, CreateView, FormView
 
 from shared.utls.email_message import send_email
-from users.forms import RegistrationUserCreationForm, LoginUserAuthenticationForm
+from users.forms import RegistrationUserCreationForm, LoginUserAuthenticationForm, ForgotPasswordForm
 from users.models import User
 
 
@@ -48,14 +47,25 @@ class LoginView(FormView):
     form_class = LoginUserAuthenticationForm
     success_url = reverse_lazy('logout')
 
-    def form_invalid(self, form):
-        return super().form_invalid(form)
 
-
-class LagoutFormView(TemplateView):
+class LogoutFormView(TemplateView):
     template_name = 'apps/auth/test.html'
     # form_class = LoginUserAuthenticationForm
 
 
 class ConformTemplateView(TemplateView):
     template_name = 'apps/auth/register-message.html'
+
+
+class ForgotPasswordFormView(FormView):
+    template_name = 'apps/auth/forgot-password.html'
+    form_class = ForgotPasswordForm
+    success_url = reverse_lazy('forgot-password-message')
+
+
+class ForgotPasswordMessageTemplateView(TemplateView):
+    template_name = 'apps/auth/forgot-message.html'
+
+
+class ResetPasswordTemplateView(TemplateView):
+    template_name = 'apps/auth/reset-password.html'
