@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from django.utils.crypto import get_random_string
 from django.views.generic import TemplateView, CreateView, FormView
 
-from shared.utls.email_message import send_email
-from users.forms import RegistrationUserCreationForm, LoginUserAuthenticationForm, ForgotPasswordForm
+from shared.utls.email_message import send_email, send_password_reset_email
+from users.forms import RegistrationUserCreationForm, LoginUserAuthenticationForm, ForgotPasswordForm, ResetPasswordForm
 from users.models import User
 
 
@@ -60,12 +60,45 @@ class ConformTemplateView(TemplateView):
 class ForgotPasswordFormView(FormView):
     template_name = 'apps/auth/forgot-password.html'
     form_class = ForgotPasswordForm
-    success_url = reverse_lazy('forgot-password-message')
+    success_url = reverse_lazy('reset-password-message')
+
+    def form_valid(self, form):
+        email = form.cleaned_data.get('email')
+        user = get_object_or_404(User, email=email)
+        conform_code = get_random_string(32)
+        cache.set(conform_code, user.email, 3600)
+        user.confirmation_code = conform_code
+        user.save()
+        send_password_reset_email(self.request, user.email, conform_code)
+        return super().form_valid(form)
+
+
+class ResetPasswordView(FormView):
+    template_name = 'apps/auth/reset-password.html'
+    form_class = ResetPasswordForm
+    success_url = reverse_lazy('login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['confirmation_code'] = self.kwargs.get('confirmation_code')  # URL'dan confirmation_code ni olish
+        return context
+
+    def form_valid(self, form):
+        confirmation_code = self.kwargs.get('confirmation_code')
+        email = cache.get(confirmation_code)
+        if not email:
+            form.add_error(None, "Tasdiqlash kodi noto'g'ri yoki muddati tugagan")
+            return self.form_invalid(form)
+        user = get_object_or_404(User, email=email)
+        new_password = form.cleaned_data.get('new_password')
+        user.set_password(new_password)
+        user.confirmation_code = None
+        user.save()
+        cache.delete(confirmation_code)
+        return redirect('login')
+
+
 
 
 class ForgotPasswordMessageTemplateView(TemplateView):
     template_name = 'apps/auth/forgot-message.html'
-
-
-class ResetPasswordTemplateView(TemplateView):
-    template_name = 'apps/auth/reset-password.html'

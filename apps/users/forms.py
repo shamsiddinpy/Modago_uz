@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, SetPasswordForm
 from django.core.cache import cache
 from django.core.exceptions import ValidationError
 from django.forms import EmailField, Form, CharField, PasswordInput
@@ -48,6 +48,23 @@ class LoginUserAuthenticationForm(Form):
 class ForgotPasswordForm(Form):
     email = EmailField(max_length=254)
 
-    def validate(self, value):
-        if not value:
-            raise ValidationError({"message": "Enter emaq"})
+    def clear_email(self):
+        email = self.cleaned_data.get('email')
+        if not email:
+            raise ValidationError("Bu email allaqachon o'tgan")
+        if not User.objects.filter(email=email).exists():
+            raise ValidationError("Ushbu elektron pochta manziliga ega foydalanuvchi yo'q")
+        return email
+
+
+class ResetPasswordForm(Form):
+    new_password = CharField(strip=False, widget=PasswordInput, label='Yangi Parol')
+    confirm_password = CharField(strip=False, widget=PasswordInput, label='Tasdiqlash Paroli')
+
+    def clear_email(self):
+        cleaned_data = super().clean()
+        new_password = self.cleaned_data.get('new_password')
+        confirm_password = self.cleaned_data.get('confirm_password')
+        if new_password != confirm_password:
+            raise ValidationError('Yangi parol va tasdiqlash paroli mos kelmaydi.')
+        return cleaned_data
