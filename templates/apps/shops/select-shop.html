@@ -1,1 +1,227 @@
 {% load static %}
+
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Falcon | Dashboard &amp; Web App Template</title>
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="{% static 'apps/assets/js/config.js' %}"></script>
+    <script src="{% static 'apps/vendors/overlayscrollbars/OverlayScrollbars.min.js' %}"></script>
+    <link href="{% static 'apps/vendors/flatpickr/flatpickr.min.css' %}" rel="stylesheet">
+    <link href="{% static 'apps/vendors/dropzone/dropzone.min.css' %}" rel="stylesheet">
+    <link href="{% static 'apps/vendors/prism/prism-okaidia.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap"
+          rel="stylesheet">
+    <link href="{% static 'apps/assets/css/theme-rtl.min.css' %}" rel="stylesheet" id="style-rtl">
+    <link href="{% static 'apps/assets/css/theme.min.css' %}" rel="stylesheet" id="style-default">
+    <link href="{% static 'apps/assets/css/user-rtl.min.css' %}" rel="stylesheet" id="user-style-rtl">
+    <link href="{% static 'apps/assets/css/user.min.css' %}" rel="stylesheet" id="user-style-default">
+    <link href="{% static 'apps/select_shop/select_shop.css' %}" rel="stylesheet" id="user-style-default">
+
+
+</head>
+
+
+<body>
+<main class="main" id="top">
+    <div class="container" data-layout="container">
+        <div class="content">
+            <div class="row mt-5">
+                <div class="col-lg-6 col-xl-12 col-xxl-6 h-100">
+                    <div class="card theme-wizard mb-5">
+{#                        <div class="card-header bg-light pt-3 pb-2">#}
+{#                            <ul class="nav justify-content-between nav-wizard">#}
+{#                                <li class="nav-item">#}
+{#                                    <a class="nav-link active fw-semi-bold" href="#bootstrap-wizard-tab1"#}
+{#                                       data-bs-toggle="tab" data-wizard-step="data-wizard-step">#}
+{#                                            <span class="nav-item-circle-parent">#}
+{#                                              <span class="nav-item-circle">#}
+{#                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"#}
+{#                                                     fill="currentColor" class="bi bi-bag"#}
+{#                                                     viewBox="0 0 16 16">#}
+{#                                                  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>#}
+{#                                                </svg>#}
+{#                                              </span>#}
+{#                                            </span>#}
+{#                                        <span class="d-none d-md-block mt-1 fs--1">Magazin nomi</span>#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                                <li class="nav-item">#}
+{#                                    <a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab2" data-bs-toggle="tab"#}
+{#                                       data-wizard-step="data-wizard-step">#}
+{#                                            <span class="nav-item-circle-parent">#}
+{#                                              <span class="nav-item-circle">#}
+{#                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"#}
+{#                                                     fill="currentColor" class="bi bi-list"#}
+{#                                                     viewBox="0 0 16 16">#}
+{#                                                  <path fill-rule="evenodd"#}
+{#                                                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>#}
+{#                                                </svg>#}
+{#                                              </span>#}
+{#                                            </span>#}
+{#                                        <span class="d-none d-md-block mt-1 fs--1">Kategoriyalar</span>#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                                <li class="nav-item">#}
+{#                                    <a class="nav-link fw-semi-bold" href="#bootstrap-wizard-tab3" data-bs-toggle="tab"#}
+{#                                       data-wizard-step="data-wizard-step">#}
+{#                                            <span class="nav-item-circle-parent">#}
+{#                                              <span class="nav-item-circle">#}
+{#                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"#}
+{#                                                     fill="currentColor" class="bi bi-menu-down"#}
+{#                                                     viewBox="0 0 16 16">#}
+{#                                                  <path d="M7.646.146a.5.5 0 0 1 .708 0L10.207 2H14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h3.793L7.646.146zM1 7v3h14V7H1zm14-1V4a1 1 0 0 0-1-1h-3.793a1 1 0 0 1-.707-.293L8 1.207l-1.5 1.5A1 1 0 0 1 5.793 3H2a1 1 0 0 0-1 1v2h14zm0 5H1v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2zM2 4.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>#}
+{#                                                </svg>#}
+{#                                              </span>#}
+{#                                            </span>#}
+{#                                        <span class="d-none d-md-block mt-1 fs--1">Menyu pastga</span>#}
+{#                                    </a>#}
+{#                                </li>#}
+{##}
+{#                            </ul>#}
+{#                        </div>#}
+                        <div class="card-body py-4">
+                            <div class="tab-content">
+                                <div class="tab-pane active px-sm-3 px-md-5" role="tabpanel"
+                                     aria-labelledby="bootstrap-wizard-tab1" id="bootstrap-wizard-tab1">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body p-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                                <h5 class="card-title mb-0">Yangi do'kon yaratish</h5>
+                                                <button type="button" class="btn-close" aria-label="Close"></button>
+                                            </div>
+                                            <form method="post" novalidate>
+                                                {% csrf_token %}
+                                                <div class="mb-4">
+                                                    <label class="form-label" for="shopName">Do'kon nomi</label>
+                                                    <div class="input-group">
+                                                        <input type="text" name="name" class="form-control"
+                                                               id="shopName">
+                                                        <button class="btn btn-outline-secondary" type="button">
+                                                            <i class="bi bi-x"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary">Keyingisi</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane px-sm-3 px-md-5" role="tabpanel"
+                                     aria-labelledby="bootstrap-wizard-tab2" id="bootstrap-wizard-tab2">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body p-4">
+                                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                                <h5 class="card-title mb-0">Yangi do'kon yaratish</h5>
+                                                <button type="button" class="btn-close" aria-label="Close"></button>
+                                            </div>
+
+                                            <form method="post">
+                                                <div class="mb-4">
+                                                    <label class="form-label" for="categories">Kategoriyalar</label>
+                                                    <select class="form-select" id="categories">
+                                                        <option selected>Kategoriyani tanlang</option>
+                                                    </select>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-outline-secondary">Orqaga
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Keyingisi</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane px-sm-3 px-md-5" role="tabpanel"
+                                     aria-labelledby="bootstrap-wizard-tab3" id="bootstrap-wizard-tab3">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body p-4">
+                                            <h5 class="card-title mb-4">Yangi do'kon yaratish</h5>
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="country" class="form-label">Ro'yxatdan o'tgan
+                                                        davlat</label>
+                                                    <select class="form-select" id="country">
+                                                        <option selected>Biznes ro'yxatdan o'tgan davlatni tanlang
+                                                        </option>
+                                                        <!-- Davlatlar ro'yxati -->
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="phone" class="form-label">Biznes telefon
+                                                        raqami</label>
+                                                    <div class="input-group">
+                                                        <input type="tel" class="form-control" id="phone"
+                                                               placeholder="Biznes telefon raqamini kiriting">
+                                                        <button class="btn btn-outline-secondary" type="button">
+                                                            <i class="bi bi-x"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="language" class="form-label">Til</label>
+                                                    <select class="form-select" id="language">
+                                                        <option selected>Tilni tanlang</option>
+                                                        <!-- Tillar ro'yxati -->
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="currency" class="form-label">Pul birligi</label>
+                                                    <select class="form-select" id="currency">
+                                                        <option selected>Valyutani tanlang</option>
+                                                        <!-- Valyutalar ro'yxati -->
+                                                    </select>
+                                                </div>
+
+                                                <div class="d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-outline-secondary">Orqaga
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Jo'natish</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="{% static 'apps/vendors/popper/popper.min.js' %}"></script>
+<script src="{% static 'apps/vendors/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'apps/vendors/anchorjs/anchor.min.js' %}"></script>
+<script src="{% static 'apps/vendors/is/is.min.js' %}"></script>
+<script src="{% static 'apps/assets/js/flatpickr.js' %}"></script>
+<script src="{% static 'apps/vendors/dropzone/dropzone.min.js' %}"></script>
+<script src="{% static 'apps/vendors/lottie/lottie.min.js' %}"></script>
+<script src="{% static 'apps/vendors/validator/validator.min.js' %}"></script>
+<script src="{% static 'apps/vendors/prism/prism.js' %}"></script>
+<script src="{% static 'apps/vendors/fontawesome/all.min.js' %}"></script>
+<script src="{% static 'apps/vendors/lodash/lodash.min.js' %}"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+<script src="{% static 'apps/vendors/list.js/list.min.js' %}"></script>
+<script src="{% static 'apps/assets/js/theme.js' %}"></script>
+
+</body>
+
+</html>
