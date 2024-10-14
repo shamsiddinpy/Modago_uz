@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
 
 
-class DashboardView(TemplateView):
+class BasedTemplateView(TemplateView):
     template_name = 'apps/base.html'

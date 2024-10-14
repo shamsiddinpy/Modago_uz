@@ -1,0 +1,64 @@
+/* Adjust font size and weight of sidebar menu items */
+.navbar-vertical .navbar-nav .nav-link {
+    font-size: 18px;
+    font-weight: 500;
+    color: #5e6e82;
+}
+
+/* Adjust padding for menu items */
+.navbar-vertical .navbar-nav .nav-item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Style for icons */
+.navbar-vertical .navbar-nav .nav-link-icon {
+    font-size: 18px;
+    width: 30px;
+}
+
+/* Adjust spacing for dropdown indicators */
+.navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after {
+    top: 12px;
+    font-size: 10px;
+}
+
+/* Style for the Modago logo */
+.navbar-brand .font-sans-serif {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c7be5;
+}
+
+/* Adjust overall sidebar width if needed */
+.navbar-vertical.navbar-expand-xl {
+    max-width: 250px;
+}
+
+/* Adjust font size for "Design" text */
+.navbar-text {
+    font-size: 18px !important;
+}
+
+/* Adjust size for icons in the top right corner */
+.navbar-nav-icons .nav-item .nav-link {
+    font-size: 18px !important;
+}
+
+/* Adjust size for specific icons if needed */
+.navbar-nav-icons .nav-item .nav-link .fas,
+.navbar-nav-icons .nav-item .nav-link .far {
+    font-size: 18px !important;
+}
+
+/* Adjust notification indicator size */
+.notification-indicator-number {
+    font-size: 12px !important; /* Slightly smaller for better fit */
+    padding: 2px 4px !important;
+}
+
+
+.navbar-nav-icons > * {
+    margin-left: 15px;
+}
+
