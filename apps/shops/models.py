@@ -57,7 +57,7 @@ class Shop(CreatedBaseModel):  # ✅
     shop_category = models.ForeignKey("shops.ShopCategory", CASCADE, verbose_name="Kategoriyalar")
     status = models.CharField(max_length=8, choices=Status.choices, db_default=Status.ACTIVE)
     currency = models.ForeignKey("shops.Currency", CASCADE, verbose_name="Pul birligi")
-    plan = models.ForeignKey('users.Plan', CASCADE, related_name='view')
+    plan = models.ForeignKey('users.Plan', CASCADE, related_name='view', )
     owner = models.ForeignKey('users.User', CASCADE, related_name='view')
     lat = models.FloatField('Location lat', blank=True, null=True)
     lon = models.FloatField('Location lon', blank=True, null=True)

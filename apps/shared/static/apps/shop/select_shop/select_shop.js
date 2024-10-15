@@ -54,16 +54,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const countrySelect = document.getElementById('country');
 
-    countrySelect.addEventListener('change', function () {
-        if (this.value) {
-            this.classList.add('is-valid');
-            this.classList.remove('is-invalid');
-        } else {
-            this.classList.add('is-invalid');
-            this.classList.remove('is-valid');
+function clearInput(inputId) {
+    document.getElementById(inputId).value = '';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('storeCreationForm');
+    form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
         }
+        form.classList.add('was-validated');
     });
 });

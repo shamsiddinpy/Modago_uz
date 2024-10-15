@@ -23,27 +23,83 @@
     <link href="{% static 'apps/assets/css/theme.min.css' %}" rel="stylesheet" id="style-default">
     <link href="{% static 'apps/assets/css/user-rtl.min.css' %}" rel="stylesheet" id="user-style-rtl">
     <link href="{% static 'apps/assets/css/user.min.css' %}" rel="stylesheet" id="user-style-default">
-    <style>
-        body {
-            background: linear-gradient(135deg, #87CEEB, #9370DB);
+  <style>
+    body {
+        background: linear-gradient(135deg, #87CEEB, #9370DB);
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
 
-        }
+    .card {
+        width: 540px;
+        height: 900px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
 
-        .card-body {
-            width: 500px;
-            height: 800px;
-            overflow-y: auto;
+    .card-body {
+        padding: 2rem;
+        overflow-y: auto;
+        flex-grow: 1;
+    }
 
-        }
+    .form-control {
+        width: 100% !important;
+        height: 46px !important;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: 1px solid #ced4da;
+        margin-bottom: 1.5rem;
+    }
 
-        .form-control {
-            width: 400px !important;
-            height: 46px !important;
-            margin: 0 auto;
-        }
+    .btn-primary {
+        width: 100% !important;
+        height: 46px !important;
+        font-size: 16px;
+    }
 
+    .row.gx-2 .col-sm-6 {
+        width: 100%;
+        padding: 0;
+    }
 
-    </style>
+    .mb-3 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .form-check {
+        margin-bottom: 1.5rem;
+    }
+
+    .row.g-2.mt-2 {
+        margin-top: 1.5rem;
+    }
+
+    .row.g-2.mt-2 .col-sm-4 {
+        width: 50%;
+        padding: 0 5px;
+    }
+
+    .btn-outline-google-plus,
+    .btn-outline-telegram {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    h5 {
+        font-size: 24px;
+        margin-bottom: 1.5rem;
+    }
+
+    .col-auto.fs--1.text-600 {
+        margin-bottom: 1.5rem;
+    }
+</style>
     <script>
         var isRTL = JSON.parse(localStorage.getItem('isRTL'));
         if (isRTL) {
@@ -106,7 +162,8 @@
                             <div class="row gx-2">
                                 <div class="mb-3 col-sm-6">
                                     <label for="password1">Parol<span class="text-red"></span></label>
-                                    <input class="form-control" name="password1" type="password" autocomplete="new-password"
+                                    <input class="form-control" name="password1" type="password"
+                                           autocomplete="new-password"
                                            placeholder="Parol"/>
                                 </div>
 

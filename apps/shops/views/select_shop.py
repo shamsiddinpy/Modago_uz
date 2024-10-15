@@ -1,17 +1,19 @@
-from django.shortcuts import render, redirect
-from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from shops.forms import SelectShopModelForm
-from shops.models import Shop, Category, ShopCategory, Country, Language, Currency
+from shops.models import Shop, ShopCategory, Country, Language, Currency
 
 
-class ShopCreationView(CreateView):
+class ShopCreationView(LoginRequiredMixin, CreateView):
     template_name = 'apps/shops/select-shop.html'
     form_class = SelectShopModelForm
+    success_url = reverse_lazy('shop')
 
-    def get_queryset(self):
-        return Shop.objects.all()
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -20,3 +22,6 @@ class ShopCreationView(CreateView):
         context['languages'] = Language.objects.all()
         context['currencys'] = Currency.objects.all()
         return context
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)

@@ -45,7 +45,7 @@ def conform_message(request, confirmation_code):
 class LoginView(FormView):
     template_name = 'apps/auth/login.html'
     form_class = LoginUserAuthenticationForm
-    success_url = reverse_lazy('shop')
+    success_url = reverse_lazy('select_shop')
 
 
 class LogoutFormView(TemplateView):
