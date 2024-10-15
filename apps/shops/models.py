@@ -23,8 +23,6 @@ class Category(Model):
     shop = models.ForeignKey('shops.Shop', CASCADE, related_name='categories_set')
     attachments = GenericRelation('shops.Attachment', "record_id", blank=True)
 
-    # Rasm jpg, png, jpeg formatda bo'lsa s haffof ko'rinadi 1200x680 px
-
     def __str__(self):
         return self.name
 

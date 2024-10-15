@@ -49,7 +49,6 @@ class Order(CreatedBaseModel):
     floor_number = models.IntegerField('Qavat raqami', null=True, blank=True)
     address = models.CharField(blank=True, null=True, max_length=255, verbose_name='manzil')
     apartment_number = models.IntegerField('kvartera raqami', null=True, blank=True)
-
     lon = models.FloatField(null=True, blank=True)
     lat = models.FloatField(null=True, blank=True)
     first_name = models.CharField(blank=True, null=True, max_length=20)
@@ -72,7 +71,6 @@ class PromoCode(Model):
     starts_at = models.DateField(verbose_name=' promocde boshlash vaqti')
     ends_at = models.DateField(verbose_name='promo code tugash vaqti ')
     is_active = models.BooleanField(default=False)
-    code = models.CharField(max_length=255)
 
     def __str__(self):
         return self.code

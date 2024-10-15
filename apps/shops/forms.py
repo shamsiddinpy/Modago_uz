@@ -7,3 +7,4 @@ class SelectShopModelForm(ModelForm):
     class Meta:
         model = Shop
         fields = 'name', 'shop_category', 'phone', 'country', 'languages', 'currency'
+
