@@ -48,9 +48,12 @@ class LoginView(FormView):
     success_url = reverse_lazy('select_shop')
 
 
-class LogoutFormView(TemplateView):
-    template_name = 'apps/auth/test.html'
-    # form_class = LoginUserAuthenticationForm
+def logout(request):
+    try:
+        del request.session['user']
+    except:
+        return redirect('login')
+    return redirect('login')
 
 
 class ConformTemplateView(TemplateView):
@@ -96,8 +99,6 @@ class ResetPasswordView(FormView):
         user.save()
         cache.delete(confirmation_code)
         return redirect('login')
-
-
 
 
 class ForgotPasswordMessageTemplateView(TemplateView):

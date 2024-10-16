@@ -38,8 +38,8 @@ class ShopCategory(Model):
         return self.name
 
     class Meta:
-        verbose_name = "Do'koni nomi"
-        verbose_name_plural = "Do'koni nomlari"
+        verbose_name = "Do'koni Kategorya"
+        verbose_name_plural = "Do'koni Kategoryalar"
 
 
 class Shop(CreatedBaseModel):  # ✅
