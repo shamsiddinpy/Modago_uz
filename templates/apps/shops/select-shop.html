@@ -158,7 +158,10 @@
                                             </div>
 
                                             <div class="d-flex justify-content-between">
-                                                <button type="button" class="btn btn-outline-secondary">Back</button>
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                        onclick="goToLogin()">Back
+                                                </button>
+
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </div>
                                         </form>
@@ -189,7 +192,11 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
 <script src="{% static 'apps/vendors/list.js/list.min.js' %}"></script>
 <script src="{% static 'apps/assets/js/theme.js' %}"></script>
-
+ <script>
+        function goToLogin() {
+            window.location.href = "{% url 'login' %}";  // 'login' o'rniga haqiqiy URL nomini yozing
+        }
+    </script>
 </body>
 
 </html>
