@@ -6,6 +6,7 @@ from django.utils.crypto import get_random_string
 from django.views.generic import TemplateView, CreateView, FormView
 
 from shared.utls.email_message import send_email, send_password_reset_email
+from shops.models import Shop
 from users.forms import RegistrationUserCreationForm, LoginUserAuthenticationForm, ForgotPasswordForm, ResetPasswordForm
 from users.models import User
 
@@ -46,6 +47,17 @@ class LoginView(FormView):
     template_name = 'apps/auth/login.html'
     form_class = LoginUserAuthenticationForm
     success_url = reverse_lazy('select_shop')
+
+    def form_invalid(self, form):
+        user = form.get_user()
+        login(self.request, user)
+        if Shop.objects.filter(owner=user).exists():
+            shop = Shop.objects.filter(owner=user).first()
+            return redirect('shop', pk=shop.pk)
+
+        else:
+            return redirect('select_shop')
+        return super().form_invalid(form)
 
 
 def logout(request):

@@ -370,23 +370,50 @@
                         </div>
                     </a>
                         <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
-                            <div class="bg-dark rounded-2 py-2">
-                                <div class="dropdown-item-avatar">
-                                    <div class="avatar avatar-xl bg-primary">
-                                        <span>SD</span>
+                            <div class="bg-white rounded-2 py-2">
+                                <!-- Avatar va ism/familiya -->
+                                <div class="dropdown-item-avatar d-flex align-items-center justify-content-center mb-2">
+                                    <div class="avatar avatar-xl bg-primary text-white">
+                                        <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>
                                     </div>
                                 </div>
                                 <div class="dropdown-item-info text-center">
-                                    <h6 class="mb-0">Shamsiddin Daminov</h6>
+                                    <h6 class="mb-0">{{ user.first_name }} {{ user.last_name }}</h6>
+                                    <a class="text-muted small" href="#!">
+                                        <i class="fas fa-edit"></i> Edit account
+                                    </a>
                                 </div>
-                                <a class="dropdown-item" href="#!">
-                                    <i class="fas fa-edit me-2"></i>Hisobni tahrirlash
+
+                                <!-- Do'konlar ro'yxati -->
+                                <div class="dropdown-divider my-2"></div>
+                                <div class="shops-list">
+                                    {% for shop in user.shops.all %}
+                                        <a class="dropdown-item d-flex justify-content-between align-items-center"
+                                           href="#">
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar avatar-sm bg-{{ shop.color }} text-white me-2">
+                                                    <span>{{ shop.name|first }}</span>
+                                                </div>
+                                                <div class="shop-info">
+                                                    <div class="shop-name">{{ shop.name }}</div>
+                                                    <div class="shop-category small text-muted">{{ shop.category }}</div>
+                                                </div>
+                                            </div>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+
+                                <!-- Yangi do'kon qo'shish -->
+                                <div class="dropdown-divider my-2"></div>
+                                <a class="dropdown-item" href="{% url 'select_shop' %}">
+                                    + Add another shop
                                 </a>
-                                <a class="dropdown-item" href="#!">
-                                    <i class="fas fa-plus me-2"></i>Boshqa do'kon qo'shish
+
+                                <!-- Chiqish -->
+                                <a class="dropdown-item text-danger" href="{% url 'logout' %}">
+                                    Log Out
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="{% url 'logout' %}">Chiqish</a>
                             </div>
                         </div>
                     </li>

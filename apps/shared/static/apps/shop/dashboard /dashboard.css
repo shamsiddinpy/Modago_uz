@@ -62,3 +62,49 @@
     margin-left: 15px;
 }
 
+
+.dropdown-item-avatar {
+    padding: 15px;
+    text-align: center;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.avatar-sm {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 50%;
+}
+
+.shop-info {
+    font-size: 14px;
+}
+
+.dropdown-menu-end {
+    width: 300px;
+    color: #f0dbd0;
+}
+
+.shops-list .dropdown-item {
+    padding: 10px 15px;
+    color: #f0dbd0;
+
+}
+
+.shop-name {
+    font-weight: bold;
+}
+
+.shop-category {
+    font-size: 12px;
+}
