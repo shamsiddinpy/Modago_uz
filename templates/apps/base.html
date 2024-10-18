@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'apps/shop/dashboard /dashboard.css' %}">
 </head>
 <body>
@@ -112,7 +112,11 @@
 <div class="main-content" id="mainContent">
     <div class="top-bar">
         <div class="top-bar-left">
-            <a href="#" class="logo">Madagu uz</a>
+            {% for shop in user.view.all %}
+                <a href="#" class="logo">{{ shop.name }}</a>
+            {% empty %}
+                <a href="#" class="logo">Do'kon topilmadi</a>
+            {% endfor %}
             <a href="#" class="shop-select">Boshqa do'kon qo'shish</a>
         </div>
 
@@ -128,7 +132,7 @@
                 <div class="notification-badge"></div>
             </div>
             <div class="language-selector">
-                <img src="/api/placeholder/24/24" alt="US Flag" class="language-flag">
+                <img src="/path/to/your/flag/us_flag.png" alt="US Flag" class="language-flag">
                 <i class="fas fa-chevron-down" style="margin-left: 4px; color: var(--text-secondary);"></i>
             </div>
             <div class="user-profile">
