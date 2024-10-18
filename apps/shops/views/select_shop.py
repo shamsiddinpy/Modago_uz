@@ -14,7 +14,7 @@ class ShopCreationView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
-        form.instance.plan = Plan.objects.get(name='Free Plan')  # Boshlang'ich plan
+        form.instance.plan = Plan.objects.get(name='Free Plan') 
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
