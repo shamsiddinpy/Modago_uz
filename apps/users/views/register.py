@@ -51,13 +51,15 @@ class LoginView(FormView):
     def form_invalid(self, form):
         user = form.get_user()
         login(self.request, user)
+        if self.request.session.get('shop_id'):
+            shop_id = self.request.session['shop_id']
+            return redirect('dashboard', pk=shop_id)
         if Shop.objects.filter(owner=user).exists():
             shop = Shop.objects.filter(owner=user).first()
-            return redirect('shop', pk=shop.pk)
-
+            self.request.session['shop_id'] = shop.id
+            return redirect('dashboard', pk=shop.pk)
         else:
             return redirect('select_shop')
-        return super().form_invalid(form)
 
 
 def logout(request):
@@ -115,4 +117,3 @@ class ResetPasswordView(FormView):
 
 class ForgotPasswordMessageTemplateView(TemplateView):
     template_name = 'apps/auth/forgot-message.html'
-

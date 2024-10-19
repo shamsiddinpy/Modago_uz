@@ -3,6 +3,7 @@ from django.contrib.contenttypes.fields import (GenericForeignKey,
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import CASCADE, Model, TextChoices
+from django.utils.crypto import salted_hmac
 
 from apps.shared.django.models import CreatedBaseModel
 
