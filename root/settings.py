@@ -40,8 +40,14 @@ INSTALLED_APPS = [
 
     'orders',
     'shops',
-    'telegram',
+    'teligram',
     'users',
+
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.telegram',
 
 ]
 AUTH_USER_MODEL = 'users.User'
@@ -53,9 +59,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    'allauth.account.middleware.AccountMiddleware',  # Allauth middleware
 
-ROOT_URLCONF = 'root.urls'
+]
 
 TEMPLATES = [
     {
@@ -137,3 +143,21 @@ EMAIL_HOST_USER = 'dadturchi@gmail.com'
 EMAIL_HOST_PASSWORD = 'rfawomveapvtdtmq'
 
 LOGIN_URL = '/users/login/'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+LOGIN_REDIRECT_URL = '/shop'  # Kirgandan keyin qayerga yo'naltirish
+LOGOUT_REDIRECT_URL = '/login'
+ROOT_URLCONF = 'root.urls'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'telegram': {
+        'APP': {
+            'client_id': '<bot_id>',
+            'secret': '<bot token>',
+        },
+        'AUTH_PARAMS': {'auth_date_validity': 30},
+    }
+}

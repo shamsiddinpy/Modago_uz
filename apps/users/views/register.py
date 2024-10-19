@@ -115,3 +115,4 @@ class ResetPasswordView(FormView):
 
 class ForgotPasswordMessageTemplateView(TemplateView):
     template_name = 'apps/auth/forgot-message.html'
+

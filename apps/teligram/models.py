@@ -30,7 +30,7 @@ class ChannelMessage(Model):  # ✅
         NOT_SENT = 'not_sent', 'Not sent'
 
     message = models.CharField(max_length=4100)
-    chat = models.ForeignKey('telegram.TelegramChannel', CASCADE, related_name='messages')
+    chat = models.ForeignKey('teligram.TelegramChannel', CASCADE, related_name='messages')
     is_scheduled = models.BooleanField(default=False)
     scheduled_time = models.DateTimeField(blank=True, null=True, verbose_name="Keyinroq jo'natish vaqti")
     file_type = models.CharField(max_length=20, choices=FileType.choices, db_default=FileType.TEXT)

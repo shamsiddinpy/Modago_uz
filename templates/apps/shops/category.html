@@ -1,0 +1,157 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+
+{% block main_content %}
+    <!DOCTYPE html>
+    <html lang="uz">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kategoriyalar</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'apps/shop/category/categry.css' %}" rel="stylesheet">
+    </head>
+    <body>
+    <div class="category-wrapper">
+        <!-- Header section -->
+        <div class="header">
+            <h1 class="title">Kategoriyalar</h1>
+            <div class="actions">
+                <input type="text" class="search-input" placeholder="Izlash">
+                <button class="btn btn-import">
+                    <i class="fas fa-file-import"></i>
+                    Import
+                </button>
+                <button id="createButton" class="btn btn-create">
+                    <i class="fas fa-plus"></i>
+                    Yaratish
+                </button>
+            </div>
+        </div>
+
+        <!-- Table section -->
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Emoji</th>
+                    <th>Nom</th>
+                    <th>Asosiy kategoriya</th>
+                    <th>Mavjudligi</th>
+                    <th>Veb-saytda ko'rsatish</th>
+                    <th>Harakatlar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><i class="fas fa-bars drag-handle"></i></td>
+                    <td class="emoji-cell">💻</td>
+                    <td>Computers</td>
+                    <td>Mavjud emas</td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="action-btn" title="Ko'chirish">
+                                <i class="fas fa-clone"></i>
+                            </button>
+                            <button class="action-btn" title="Tahrirlash">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn" title="O'chirish">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div id="categoryModal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Kategoriya yaratish</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <form id="categoryForm">
+                    <div class="form-group">
+                        <label>Nom <span class="required">*</span></label>
+                        <input type="text" id="name" required placeholder="Nomini kiriting">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Asosiy kategoriya</label>
+                        <select id="parentCategory">
+                            <option value="">Asosiy kategoriyani tanlang</option>
+                            <option>Elektronika</option>
+                            <option>Kiyim</option>
+                            <option>Oziq-ovqat</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Emoji</label>
+                        <input type="text" id="emoji" placeholder="Emoji tanlang">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tavsif</label>
+                        <div class="editor-toolbar">
+                            <button type="button" class="editor-btn" data-command="bold"><strong>B</strong></button>
+                            <button type="button" class="editor-btn" data-command="italic"><em>I</em></button>
+                            <button type="button" class="editor-btn" data-command="underline"><u>U</u></button>
+                            <button type="button" class="editor-btn" data-command="strikeThrough">S</button>
+                            <button type="button" class="editor-btn" data-command="code">&lt;&gt;</button>
+                            <button type="button" class="editor-btn" data-command="createLink">🔗</button>
+                            <button type="button" class="editor-btn" data-command="undo">↩</button>
+                            <button type="button" class="editor-btn" data-command="redo">↪</button>
+                        </div>
+                        <textarea rows="4" maxlength="4096" class="editor-content"></textarea>
+                        <div class="char-count">0/4096</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Saralash tartibi</label>
+                        <input type="number" id="order" placeholder="Saralash tartibini kiriting">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Surat</label>
+                        <div class="upload-box" id="dropZone">
+                            <span>↑ Yuklash</span>
+                            <input type="file" id="fileInput" accept="image/*" hidden>
+                        </div>
+                        <div class="upload-info">
+                            <p>Rasm jpg, png, jpeg formatda bo'lsa shaffof ko'rinadi</p>
+                            <p>1200x680 px</p>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-cancel">Bekor qilish</button>
+                        <button type="submit" class="btn btn-submit">Yaratish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'apps/shop/category/category.js' %}">
+    </script>
+    </body>
+    </html>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'apps/base.html' %}
+{% block main_content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h3>Total Revenue</h3>
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-card-value">$15,231.89</div>
+            <div class="stat-card-trend trend-up">+12.3% from last month</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h3>New Orders</h3>
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="stat-card-value">126</div>
+            <div class="stat-card-trend trend-down">-2.5% from last month</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h3>Active Users</h3>
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-card-value">2,315</div>
+            <div class="stat-card-trend trend-up">+8.1% from last month</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <h3>Messages</h3>
+                <i class="fas fa-message"></i>
+            </div>
+            <div class="stat-card-value">43</div>
+            <div class="stat-card-trend trend-up">+4.9% from last month</div>
+        </div>
+    </div>
+
+    <div class="activity-grid">
+        <div class="activity-card">
+            <h3>Recent Orders</h3>
+            <div class="activity-item">
+                <div class="activity-item-left">
+                    <div class="activity-avatar"></div>
+                    <div>
+                        <div>Order #1001</div>
+                        <div style="color: var(--text-secondary);">2 items • $199.99</div>
+                    </div>
+                </div>
+                <span class="status-badge status-completed">Completed</span>
+            </div>
+            <div class="activity-item">
+                <div class="activity-item-left">
+                    <div class="activity-avatar"></div>
+                    <div>
+                        <div>Order #1002</div>
+                        <div style="color: var(--text-secondary);">1 item • $99.99</div>
+                    </div>
+                </div>
+                <span class="status-badge status-completed">Completed</span>
+            </div>
+        </div>
+
+        <div class="activity-card">
+            <h3>Recent Messages</h3>
+            <div class="activity-item">
+                <div class="activity-item-left">
+                    <div class="activity-avatar"></div>
+                    <div>
+                        <div>User 1</div>
+                        <div style="color: var(--text-secondary);">New message received</div>
+                    </div>
+                </div>
+                <span style="color: var(--text-secondary);">2m ago</span>
+            </div>
+            <div class="activity-item">
+                <div class="activity-item-left">
+                    <div class="activity-avatar"></div>
+                    <div>
+                        <div>User 2</div>
+                        <div style="color: var(--text-secondary);">New message received</div>
+                    </div>
+                </div>
+                <span style="color: var(--text-secondary);">5m ago</span>
+            </div>
+        </div>
+    </div>
+
+    </body>
+    </html>
+{% endblock %}

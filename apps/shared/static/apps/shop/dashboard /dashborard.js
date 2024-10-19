@@ -62,3 +62,25 @@ document.addEventListener('click', function (event) {
     }
 });
 
+
+function toggleDropdown() {
+    var dropdown = document.getElementById("dropdown-menu");
+    if (dropdown.style.display === "none" || dropdown.style.display === "") {
+        dropdown.style.display = "block";  // Ochiladi
+    } else {
+        dropdown.style.display = "none";  // Yopiladi
+    }
+}
+
+// Click qilinmaganda yopilish uchun
+window.onclick = function (event) {
+    if (!event.target.matches('.avatar')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
+        }
+    }
+}

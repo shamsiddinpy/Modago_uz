@@ -17,7 +17,7 @@ class Order(CreatedBaseModel):
         RETURNED = 'returned', 'Returned'  # qaytarildi
 
     class Type(TextChoices):
-        TELEGRAM = 'telegram', 'Telegram'
+        TELEGRAM = 'teligram', 'Telegram'
         WEB = 'web', 'Web'
         WHATSAPP = 'whatsapp', 'Whatsapp'
 
@@ -136,7 +136,7 @@ class Service(Model):
     class Type(TextChoices):
         INTERNAL = 'internal', 'Internal'  # ichki
         INPLACE = 'inplace', 'Inplace'  # joyida
-        TELEGRAM = 'telegram', 'Telegram'  # teligram
+        TELEGRAM = 'teligram', 'Telegram'  # teligram
         WEB = 'web', 'Web'  # Veb
         INSTALMENT = 'instalment', 'Instalment'  # to'lov
 
