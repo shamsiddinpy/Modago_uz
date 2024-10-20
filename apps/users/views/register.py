@@ -1,4 +1,4 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, get_user_model
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -9,6 +9,8 @@ from shared.utls.email_message import send_email, send_password_reset_email
 from shops.models import Shop
 from users.forms import RegistrationUserCreationForm, LoginUserAuthenticationForm, ForgotPasswordForm, ResetPasswordForm
 from users.models import User
+
+Users = get_user_model()
 
 
 class RegisterView(CreateView):
@@ -43,23 +45,28 @@ def conform_message(request, confirmation_code):
     return redirect('login')
 
 
-class LoginView(FormView):
+class CustomLoginView(FormView):
     template_name = 'apps/auth/login.html'
     form_class = LoginUserAuthenticationForm
     success_url = reverse_lazy('select_shop')
 
-    def form_invalid(self, form):
+    def form_valid(self, form):
         user = form.get_user()
         login(self.request, user)
-        if self.request.session.get('shop_id'):
+
+        if 'shop_id' in self.request.session:
             shop_id = self.request.session['shop_id']
-            return redirect('dashboard', pk=shop_id)
+            return redirect('shops:dashboard')
+
         if Shop.objects.filter(owner=user).exists():
             shop = Shop.objects.filter(owner=user).first()
             self.request.session['shop_id'] = shop.id
-            return redirect('dashboard', pk=shop.pk)
+            return redirect('shops:dashboard')
         else:
-            return redirect('select_shop')
+            return redirect('shops:select_shop')
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
 
 
 def logout(request):

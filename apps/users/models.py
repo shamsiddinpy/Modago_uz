@@ -28,7 +28,7 @@ class Person(models.Model):
 class ShopUser(AbstractBaseUser):
     class Type(TextChoices):
         EMAIL = 'email', 'Email'
-        TELEGRAM = 'teligram', 'Telegram'
+        TELEGRAM = 'telegram', 'Telegram'
         FACEBOOK = 'facebook', 'Facebook'
 
     username = models.CharField(max_length=100, unique=True, validators=[UnicodeUsernameValidator])
@@ -59,7 +59,7 @@ class ShopUser(AbstractBaseUser):
 class User(AbstractBaseUser, PermissionsMixin):
     class Type(TextChoices):
         EMAIL = 'email', 'Email'
-        TELEGRAM = 'teligram', 'Telegram'
+        TELEGRAM = 'telegram', 'Telegram'
         FACEBOOK = 'facebook', 'Facebook'
 
     type = models.CharField(max_length=255, choices=Type.choices)

@@ -3,7 +3,6 @@ from django.contrib.contenttypes.fields import (GenericForeignKey,
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import CASCADE, Model, TextChoices
-from django.utils.crypto import salted_hmac
 
 from apps.shared.django.models import CreatedBaseModel
 
@@ -12,17 +11,19 @@ from apps.shared.django.models import CreatedBaseModel
 class Category(Model):
     class Status(TextChoices):
         ACTIVE = 'active', 'Active'  # faol
-        INACTIVE = 'inactive', 'Inactive'  # harakatsz
+        AVAILABILITY = 'availability', 'Availability'  # Mavjudligi
 
     name = models.CharField(max_length=255)
     emoji = models.CharField(max_length=255, null=True, blank=True)
     parent = models.ForeignKey('self', CASCADE, null=True, blank=True, related_name='children')
     show_in_ecommerce = models.BooleanField("Web saytda ko'rsatish", db_default=False)
-    status = models.CharField(max_length=10, choices=Status.choices, default=Status.INACTIVE)
+    status = models.CharField(max_length=15, choices=Status.choices, default=Status.AVAILABILITY)
     description = models.TextField(null=True, blank=True)
     position = models.IntegerField("tartiblash tartibi", default=1)
     shop = models.ForeignKey('shops.Shop', CASCADE, related_name='categories_set')
     attachments = GenericRelation('shops.Attachment', "record_id", blank=True)
+
+
 
     def __str__(self):
         return self.name
